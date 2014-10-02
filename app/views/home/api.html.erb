@@ -1,0 +1,48 @@
+<h1>STOCK PRICE APP</h1>
+
+Result: <div>DATA GOES HERE</div>
+
+<button id="jsonp">Stock API with JSONP</button>
+<button id="proxy">Stock API with Proxy </button>
+<button id="cors">OMDB API(supports CORS)</button>
+
+<script type="text/javascript">
+
+$('#jsonp').click(function(){
+	var request = $.ajax({
+	  url: "http://dev.markitondemand.com/Api/v2/Quote/jsonp/?symbol=aapl",
+	 	dataType: "jsonp"
+	});
+
+	request.done(function(data){
+		console.log(data)
+		$('div').text(data.LastPrice)
+	});
+})
+
+$('#proxy').click(function(){
+	var request = $.ajax({
+	  url: "/get_price",
+	 	dataType: "json"
+	});
+
+	request.done(function(data){
+		console.log(data)
+		$('div').text(data.LastPrice)
+	});
+})
+
+$('#cors').click(function(){
+	var request = $.ajax({
+	  url: "http://www.omdbapi.com/?t=True%20Grit&y=1969",
+	 	dataType: "json"
+	});
+
+	request.done(function(data){
+		console.log(data)
+		$('div').text(data.Title)
+	});
+})
+
+		
+</script>
